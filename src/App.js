@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import InputForm from './InputForm';
+import Dropdown from './Dropdown';
+import ResponseDisplay from './ResponseDisplay';
 
 function App() {
+  const [response, setResponse] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  useEffect(() => {
+    document.title = "21BEC0819";  
+  }, []);
+
+  const handleResponse = (apiResponse) => {
+    setResponse(apiResponse);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>API Processor</h1>
+      <InputForm onResponse={handleResponse} />
+      {response && (
+        <>
+          <Dropdown selectedOptions={selectedOptions} setSelectedOptions={setSelectedOptions} />
+          <ResponseDisplay response={response} selectedOptions={selectedOptions} />
+        </>
+      )}
     </div>
   );
 }
