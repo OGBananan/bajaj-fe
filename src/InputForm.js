@@ -8,7 +8,7 @@ function InputForm({ onResponse }) {
   const handleSubmit = async () => {
     try {
       const parsedData = JSON.parse(jsonInput);
-      const response = await axios.post('https://bajaj-test-0ac3.onrender.com/bfhl', parsedData); // Update with your API URL
+      const response = await axios.post('https://bajaj-test-0ac3.onrender.com/bfhl/', parsedData); // Update with your API URL
       onResponse(response.data);
       setError(null);
     } catch (err) {
